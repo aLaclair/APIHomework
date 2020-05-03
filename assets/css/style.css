@@ -1,0 +1,109 @@
+html {
+    height: 100vh;
+}
+body {
+    margin: 0px;
+    color: white;
+}
+.button-area {
+    height: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid gray;
+    text-align: center;
+    background-color: #5e6870;
+}
+button {
+    background-color: #3bd1c7;
+    color: white;
+    border: 0px;
+    height: 25px;
+    border-radius: 10%;
+}
+.btn {
+    margin: 0.5%;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+.main {
+    background-color: white;
+    width: 100vw;
+    height: 100%;
+}
+.display-area {
+    float: left;
+    width: 70%;
+    box-sizing: border-box;
+    height: 88vh;
+    justify-content: center;
+    margin-top: 2%;
+    padding-bottom: 2%;
+    overflow: scroll;
+}
+.rating {
+    margin-bottom: 5px;
+}
+.display {
+    float: left;
+    text-align: center;
+    width: fit-content;
+    margin: 1%;
+    padding: 1%;
+    background-color: white;
+    border: 1px solid gray;
+    color: #5e6870
+}
+.right {
+    box-sizing: border-box;
+    float: right;
+    width: 29%;
+    height: 100vh;
+    max-height: 91vh;
+    text-align: center;
+    background-color: lightgrey;
+    border-left: 2px solid darkgrey;
+}
+.search-area{
+    margin: 5%;
+    background-color: white;
+    color: black;
+    height: 10%;
+    padding-top: 6%;
+    border: 1px solid #5e6870;
+    border-radius: 5px;
+}
+input {
+    width: 60%;
+}
+footer {
+    background-color: #5e6870;
+    height: 40px;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    line-height: 40px;
+}
+
+@media screen and (max-width: 600px) {
+    .right {
+        float: none;
+        width: 100vw;
+        height: 100px;
+        padding-top: 10px;
+    }
+    .main {
+        margin-top: 0px;
+    }
+    .search-area {
+        margin-top: 0px;
+        height: fit-content;
+        padding: 0px;
+    }
+    .display-area {
+        width: 100vw;
+    }
+}
