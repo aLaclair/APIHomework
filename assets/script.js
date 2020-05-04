@@ -27,7 +27,16 @@ $(document).ready(function() {
 
                 displayGif()
                 function displayGif() {
-                    
+                    $('.display_image').click(function() {
+                    if ($(this).attr('data-state') === 'still') {
+                        $(this).attr('data-state', 'animate')
+                        $(this).attr('src', $(this).attr('data-animate'))
+                    }
+                    else {
+                        $(this).attr('data-state', 'still')
+                        $(this).attr('src', $(this).attr('data-still'))
+                    }
+                })
                     for (let j = start; j < end; j++) {
                     let display = $('<div>')
                     display.attr('class', 'display')
@@ -45,23 +54,7 @@ $(document).ready(function() {
                     display.append(rating)
                     display.append(image)
                     $('.display-area').append(display)
-                }}
-
-                let more = $('<button>').text('Load More')
-                more.attr('class', 'load-more')
-                $('.display-area').append(more)
-
-                $('.load-more').click(function () {
-                    start += 10
-                    end += 10
-                    if(end < results.length) {
-                        displayGif()
-                    }
-                    else {
-                        $('.load-more').remove()
-                    }
-                })
-
+                }
                 $('.display_image').click(function() {
                     if ($(this).attr('data-state') === 'still') {
                         $(this).attr('data-state', 'animate')
@@ -72,6 +65,23 @@ $(document).ready(function() {
                         $(this).attr('src', $(this).attr('data-still'))
                     }
                 })
+                }
+                if ($('.load-more').parents('.right').length === 1) {}
+                else {
+                let more = $('<button>').text('Load More')
+                more.attr('class', 'load-more')
+                $('.right').append(more)
+                
+                $('.load-more').click(function () {
+                    start += 10
+                    end += 10
+                    if(end < results.length) {
+                        displayGif()
+                    }
+                    else {
+                        $('.load-more').remove()
+                    }
+                })}
             })
         })
     }

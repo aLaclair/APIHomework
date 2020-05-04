@@ -53,7 +53,8 @@ button {
     padding: 1%;
     background-color: white;
     border: 1px solid gray;
-    color: #5e6870
+    color: #5e6870;
+    border-radius: 3px;
 }
 .right {
     box-sizing: border-box;
@@ -87,13 +88,20 @@ footer {
     width: 100vw;
     line-height: 40px;
 }
+.load-more {
+    height: 50px;
+    width: 75%;
+    border-radius: 5px;
+    font-size: 18px;
+}
 
 @media screen and (max-width: 980px) {
     .right {
         float: none;
         width: 100vw;
-        height: calc(8vh + 35px);
+        height: fit-content;
         padding-top: 10px;
+        padding-bottom: 10px;
     }
     .search-area {
         margin: 0px;
@@ -106,5 +114,11 @@ footer {
     .display-area {
         width: 100vw;
         height: 77vh;
+    }
+    .load-more {
+        width: 25%;
+        height: 25px;
+        font-size: 14px;
+        margin-top: 10px;
     }
 }
