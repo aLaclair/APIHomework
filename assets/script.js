@@ -19,7 +19,7 @@ $(document).ready(function() {
         $('.btn').click(function() {    //adding onclick event to the buttons on the page
             $('.display-area').empty() 
             let query = $(this).val()   //creating a dynamic url by getting buttons value
-            queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + query + '&api_key=9uTuBGWIbt09JwxExjzQL9NLv51Kzr7o&limit=100&rating=pg-13'
+            queryURL = 'https://api.giphy.com/v1/gifs/search?q=' + query + '&api_key=9uTuBGWIbt09JwxExjzQL9NLv51Kzr7o&limit=100&rating=pg-13'
             $.ajax({
                 url: queryURL,
                 method: 'GET'
@@ -88,7 +88,7 @@ $(document).ready(function() {
                 })}
             })
         })
-        
+
         //********************************************************************************************************/
     }
 
