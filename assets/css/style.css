@@ -88,22 +88,23 @@ footer {
     line-height: 40px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 980px) {
     .right {
         float: none;
         width: 100vw;
-        height: 100px;
+        height: calc(8vh + 35px);
         padding-top: 10px;
     }
-    .main {
-        margin-top: 0px;
-    }
     .search-area {
-        margin-top: 0px;
-        height: fit-content;
-        padding: 0px;
+        margin: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 8vh;
+        padding-top: 10px;
+        width: 50vw;
     }
     .display-area {
         width: 100vw;
+        height: 77vh;
     }
 }

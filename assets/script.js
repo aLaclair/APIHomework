@@ -14,7 +14,7 @@ $(document).ready(function() {
         $('.btn').click(function() {
             $('.display-area').empty()
             let query = $(this).val()
-            queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + query + '&api_key=9uTuBGWIbt09JwxExjzQL9NLv51Kzr7o&limit=10&rating=pg-13'
+            queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + query + '&api_key=9uTuBGWIbt09JwxExjzQL9NLv51Kzr7o&limit=100&rating=pg-13'
             $.ajax({
                 url: queryURL,
                 method: 'GET'
@@ -22,26 +22,46 @@ $(document).ready(function() {
             .then(function(response){
                 console.log(response)
                 let results = response.data
+                let start = 0
+                let end = 10
 
-                for (let j = 0; j < results.length; j++) {
-                let display = $('<div>')
-                display.attr('class', 'display')
+                displayGif()
+                function displayGif() {
+                    
+                    for (let j = start; j < end; j++) {
+                    let display = $('<div>')
+                    display.attr('class', 'display')
 
-                let rating = $('<p>').text('Rating: ' + results[j].rating.toUpperCase())
-                rating.attr('class', 'rating')
+                    let rating = $('<p>').text('Rating: ' + results[j].rating.toUpperCase())
+                    rating.attr('class', 'rating')
 
-                let image = $('<img>')
-                image.attr('src', results[j].images.fixed_height_still.url)
-                image.attr('class', 'display_image')
-                image.attr('data-still', results[j].images.fixed_height_still.url)
-                image.attr('data-animate', results[j].images.fixed_height.url)
-                image.attr('data-state', 'still')
+                    let image = $('<img>')
+                    image.attr('src', results[j].images.fixed_height_still.url)
+                    image.attr('class', 'display_image')
+                    image.attr('data-still', results[j].images.fixed_height_still.url)
+                    image.attr('data-animate', results[j].images.fixed_height.url)
+                    image.attr('data-state', 'still')
 
-                display.append(rating)
-                display.append(image)
-                $('.display-area').prepend(display)
-                
-                }
+                    display.append(rating)
+                    display.append(image)
+                    $('.display-area').append(display)
+                }}
+
+                let more = $('<button>').text('Load More')
+                more.attr('class', 'load-more')
+                $('.display-area').append(more)
+
+                $('.load-more').click(function () {
+                    start += 10
+                    end += 10
+                    if(end < results.length) {
+                        displayGif()
+                    }
+                    else {
+                        $('.load-more').remove()
+                    }
+                })
+
                 $('.display_image').click(function() {
                     if ($(this).attr('data-state') === 'still') {
                         $(this).attr('data-state', 'animate')
