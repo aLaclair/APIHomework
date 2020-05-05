@@ -1,6 +1,7 @@
 $(document).ready(function() {
     //Topics Array, when submit button is clicked, pushes text to this array
-    let topics = ['horror', 'dinosaur', 'science', 'chris evans', 'disney', 'universal']
+    let topics = ['Horror', 'Chris Evans', 'Universal']
+    let movies = ['Interstellar', 'Jigsaw', 'Poltergeist']
     //creating the buttons that are in  the array when the page loads    
     createButtons()
     function createButtons() {
@@ -10,12 +11,20 @@ $(document).ready(function() {
             button.attr('class', 'btn')
             button.text(topics[i])
             $('.button-area').append(button)
-        }}
+        }
+        for (let i = 0; i < movies.length; i++) {
+            let movieButton = $('<button>')
+            movieButton.attr('value', movies[i])
+            movieButton.attr('class', 'btn2')
+            movieButton.text(movies[i])
+            $('.button-area').append(movieButton)
+        }    
+    }
         
         // ********************************* MAIN FUNCTIONALITY ************************************
         
         $('.btn').click(run())
-        function run(){
+        function run(){ 
         $('.btn').click(function() {    //adding onclick event to the buttons on the page
             $('.display-area').empty() 
             let query = $(this).val()   //creating a dynamic url by getting buttons value
@@ -95,11 +104,55 @@ $(document).ready(function() {
     }
 
     $('#submit-button').click(function() { // pushes text to topics array, creates new button, and runs function again
-        let newButton = $('#search-bar').val()
+        let newButton = $('#search-bar').val().trim()
+        event.preventDefault()
         topics.push(newButton)
         $('.button-area').empty()
         createButtons()
         run()
+        movieclick()
         $('#search-bar').val('')
     })
+    $('#submit-button-m').click(function() {
+        let newMovie = $('#search-bar-m').val().trim()
+        event.preventDefault()
+        movies.push(newMovie)
+        $('.button-area').empty()
+        createButtons()
+        run()
+        movieclick()
+        $('#search-bar-m').val('')
+    })
+    
+    //Movie functionality
+    $('.btn2').click(movieclick())
+    function movieclick() {
+    $('.btn2').click(function(){
+        $('.load-more').remove()
+        $('.display-area').empty()
+        let query = $(this).val().trim()
+        let queryURl = 'https://www.omdbapi.com/?apikey=f614f73a&t=' + query + ' '
+        $.ajax({
+            url: queryURl,
+            method: 'GET'
+        })
+        .then(function(response){
+            let movieDisplay = $('<div>')
+            movieDisplay.attr('class', 'movie-display')
+
+            let title = $('<h1>').text(response.Title)
+            let director = $('<h3>').text('Director: ' + response.Director)
+            let rated = $('<p>').text('Rated: ' + response.Rated)
+            let image = $('<img>')
+            image.attr('src', response.Poster)
+            let plot = $('<p>').text(response.Plot)
+            let rating = $('<p>').text('IMDB Rating: ' + response.imdbRating)
+
+            movieDisplay.append(title).append(director).append(rated).append(image).append(plot).append(rating)
+
+            $('.display-area').append(movieDisplay)
+        })
+    }) 
+    }
+    
 })

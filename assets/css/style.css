@@ -4,6 +4,7 @@ html {
 body {
     margin: 0px;
     color: white;
+    font-family: sans-serif;
 }
 .button-area {
     height: fit-content;
@@ -14,18 +15,32 @@ body {
     background-color: #5e6870;
 }
 button {
-    background-color: #3bd1c7;
     color: white;
     border: 0px;
     height: 25px;
-    border-radius: 10%;
+    border-radius: 10px;
 }
 .btn {
+    background-color: #3bd1c7;
     margin: 0.5%;
     width: fit-content;
     height: fit-content;
     padding: 10px 20px;
     font-size: 14px;
+}
+.btn2 {
+    background-color: gold;
+    margin: 0.5%;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+#submit-button {
+    background-color: #3bd1c7;
+}
+#submit-button-m {
+    background-color: gold;
 }
 .main {
     background-color: white;
@@ -41,6 +56,7 @@ button {
     margin-top: 2%;
     padding-bottom: 2%;
     overflow: scroll;
+    padding: 10px;
 }
 .rating {
     margin-bottom: 5px;
@@ -89,12 +105,22 @@ footer {
     line-height: 40px;
 }
 .load-more {
+    background-color: #3bd1c7;
     height: 50px;
     width: 75%;
     border-radius: 5px;
     font-size: 18px;
 }
-
+.movie-display {
+    color: #5e6870;
+    text-align: center;
+    border: 2px solid #5e6870;
+    border-radius: 5px;
+    padding: 5px;
+}
+.movie-display h1, .movie-display h3, .movie-display p {
+    padding: 5px;
+}
 @media screen and (max-width: 980px) {
     .right {
         float: none;
