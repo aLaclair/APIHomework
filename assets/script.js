@@ -2,6 +2,7 @@ $(document).ready(function() {
     //Topics Array, when submit button is clicked, pushes text to this array
     let topics = ['Horror', 'Chris Evans', 'Universal']
     let movies = ['Interstellar', 'Jigsaw', 'Poltergeist']
+    let cities = ['London', 'New York', 'Paris']
     //creating the buttons that are in  the array when the page loads    
     createButtons()
     function createButtons() {
@@ -18,7 +19,14 @@ $(document).ready(function() {
             movieButton.attr('class', 'btn2')
             movieButton.text(movies[i])
             $('.button-area').append(movieButton)
-        }    
+        }
+        for (let i = 0; i < cities.length; i++) {
+            let cityButton = $('<button>')
+            cityButton.attr('value', cities[i])
+            cityButton.attr('class', 'btn3')
+            cityButton.text(cities[i])
+            $('.button-area').append(cityButton)
+        }      
     }
         
         // ********************************* MAIN FUNCTIONALITY ************************************
@@ -111,6 +119,7 @@ $(document).ready(function() {
         createButtons()
         run()
         movieclick()
+        artistClick()
         $('#search-bar').val('')
     })
     $('#submit-button-m').click(function() {
@@ -121,7 +130,19 @@ $(document).ready(function() {
         createButtons()
         run()
         movieclick()
+        weatherClick()
         $('#search-bar-m').val('')
+    })
+    $('#submit-button-a').click(function() {
+        let weather = $('#search-bar-a').val().trim()
+        event.preventDefault()
+        cities.push(weather)
+        $('.button-area').empty()
+        createButtons()
+        run()
+        movieclick()
+        weatherClick()
+        $('#search-bar-a').val('')
     })
     
     //Movie functionality
@@ -131,7 +152,7 @@ $(document).ready(function() {
         $('.load-more').remove()
         $('.display-area').empty()
         let query = $(this).val().trim()
-        let queryURl = 'https://www.omdbapi.com/?apikey=f614f73a&t=' + query + ' '
+        let queryURl = 'https://www.omdbapi.com/?apikey=f614f73a&t=' + query + ''
         $.ajax({
             url: queryURl,
             method: 'GET'
@@ -152,7 +173,48 @@ $(document).ready(function() {
 
             $('.display-area').append(movieDisplay)
         })
-    }) 
-    }
+        
+    })}
+    
+    $('.btn3').click(weatherClick())
+    function weatherClick() {
+    $('.btn3').click(function(){
+        $('.load-more').remove()
+        $('.display-area').empty()
+        let query = $(this).val().trim()
+        let queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + query + '&units=imperial&appid=0ac369af40b8b8078463977591973dee'
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        })
+        .then(function(response){
+            console.log(response)
+            let weatherDiv = $('<div>')
+            weatherDiv.attr('class', 'weather-display')
+
+            let city = $('<h1>').text(response.name)
+            let temp = $('<p>').text('Temperature: ' + Math.round(response.main.temp) + '°F')
+            let feel = $('<p>').text('Feels like: ' + Math.round(response.main.feels_like)+ '°F')
+            let humidity = $('<p>').text('Humidity: ' + response.main.humidity + '%')
+            let maxTemp = $('<p>').text('Max Temperature: ' + Math.round(response.main.temp_max)+ '°F')
+            let minTemp = $('<p>').text('Minimum Temperature: ' + Math.round(response.main.temp_min)+ '°F')
+            let weath = $('<p>').text('Weather: ' + response.weather[0].main)
+            let country = $('<p>').text('Country: ' + response.sys.country)
+            
+            
+            let loadmore = $('<button>').text('Load More')
+            loadmore.attr('class', 'load')
+
+            weatherDiv.append(city).append(temp).append(feel).append(humidity).append(loadmore)
+
+            $('.display-area').append(weatherDiv)
+
+            $('.load').click(function() {
+                weatherDiv.empty()
+                weatherDiv.append(city).append(country).append(temp).append(feel).append(maxTemp).append(minTemp)
+                weatherDiv.append(humidity).append(weath)
+            })
+        })
+    })}
     
 })
