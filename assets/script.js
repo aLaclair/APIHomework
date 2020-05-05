@@ -72,7 +72,7 @@ $(document).ready(function() {
                     }
                 })
                 }
-                let more = $('<button>').text('Load More') //if it isnt already displayed then display load more button
+                let more = $('<button>').text('Load More') //display load more button, if new button is clicked, display new load more button
                 more.attr('class', 'load-more')
                 $('.load-more').remove()
                 $('.right').append(more)
