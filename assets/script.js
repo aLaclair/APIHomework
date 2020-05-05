@@ -11,6 +11,8 @@ $(document).ready(function() {
             button.attr('value', topics[i])
             button.attr('class', 'btn')
             button.text(topics[i])
+            let closeButton = $('<button>').text('X').attr('class', 'close')
+            button.append(closeButton)
             $('.button-area').append(button)
         }
         for (let i = 0; i < movies.length; i++) {
@@ -18,6 +20,8 @@ $(document).ready(function() {
             movieButton.attr('value', movies[i])
             movieButton.attr('class', 'btn2')
             movieButton.text(movies[i])
+            let closeButton = $('<button>').text('X').attr('class', 'close')
+            movieButton.append(closeButton)
             $('.button-area').append(movieButton)
         }
         for (let i = 0; i < cities.length; i++) {
@@ -25,6 +29,8 @@ $(document).ready(function() {
             cityButton.attr('value', cities[i])
             cityButton.attr('class', 'btn3')
             cityButton.text(cities[i])
+            let closeButton = $('<button>').text('X').attr('class', 'close')
+            cityButton.append(closeButton)
             $('.button-area').append(cityButton)
         }      
     }
@@ -119,7 +125,8 @@ $(document).ready(function() {
         createButtons()
         run()
         movieclick()
-        artistClick()
+        weatherClick()
+        close()
         $('#search-bar').val('')
     })
     $('#submit-button-m').click(function() {
@@ -131,6 +138,7 @@ $(document).ready(function() {
         run()
         movieclick()
         weatherClick()
+        close()
         $('#search-bar-m').val('')
     })
     $('#submit-button-a').click(function() {
@@ -142,6 +150,7 @@ $(document).ready(function() {
         run()
         movieclick()
         weatherClick()
+        close()
         $('#search-bar-a').val('')
     })
     
@@ -216,5 +225,24 @@ $(document).ready(function() {
             })
         })
     })}
-    
+    close()
+    function close() {
+    $('.close').click(function() {
+        $(this).parent().remove()
+        for (let i = 0; i < topics.length; i++) {
+            if (topics[i] === $(this).parent().val()) {
+                topics.splice(i, 1)
+            }
+        }
+        for (let i = 0; i < movies.length; i++) {
+            if (movies[i] === $(this).parent().val()) {
+                movies.splice(i, 1)
+            }
+        }
+        for (let i = 0; i < cities.length; i++) {
+            if (cities[i] === $(this).parent().val()) {
+                cities.splice(i, 1)
+            }
+        }
+    })}
 })

@@ -25,24 +25,34 @@ button {
     margin: 0.5%;
     width: fit-content;
     height: fit-content;
-    padding: 10px 20px;
+    padding: 10px 40px;
     font-size: 14px;
+    position: relative;
 }
 .btn2 {
     background-color: gold;
     margin: 0.5%;
     width: fit-content;
     height: fit-content;
-    padding: 10px 20px;
+    padding: 10px 40px;
     font-size: 14px;
+    position: relative;
 }
 .btn3 {
     background-color: green;
     margin: 0.5%;
     width: fit-content;
     height: fit-content;
-    padding: 10px 20px;
+    padding: 10px 40px;
     font-size: 14px;
+    position: relative;
+}
+.close{
+    background-color: transparent;
+    color: black;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 #submit-button {
     background-color: #3bd1c7;
