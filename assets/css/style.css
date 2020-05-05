@@ -109,6 +109,7 @@ footer {
         margin-right: auto;
         height: 8vh;
         padding-top: 10px;
+        padding-bottom: 10px;
         width: 50vw;
     }
     .display-area {
@@ -116,7 +117,7 @@ footer {
         height: 77vh;
     }
     .load-more {
-        width: 25%;
+        width: 45%;
         height: 25px;
         font-size: 14px;
         margin-top: 10px;

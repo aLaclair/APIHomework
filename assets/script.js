@@ -14,7 +14,7 @@ $(document).ready(function() {
         
         // ********************************* MAIN FUNCTIONALITY ************************************
         
-        run()
+        $('.btn').click(run())
         function run(){
         $('.btn').click(function() {    //adding onclick event to the buttons on the page
             $('.display-area').empty() 
@@ -28,6 +28,8 @@ $(document).ready(function() {
                 let results = response.data
                 let start = 0               //declaring some variables for the function
                 let end = 10
+
+                $('.load-more').unbind('click')
 
                 displayGif()
                 function displayGif() {
@@ -70,22 +72,22 @@ $(document).ready(function() {
                     }
                 })
                 }
-                if ($('.load-more').parents('.right').length === 1) {} //checks if load more button is already displayed
-                else {
                 let more = $('<button>').text('Load More') //if it isnt already displayed then display load more button
                 more.attr('class', 'load-more')
+                $('.load-more').remove()
                 $('.right').append(more)
                 
-                $('.load-more').click(function () { //when load more button is clicked, add 10 more gifs to the page
-                    start += 10
-                    end += 10
+                $('.load-more').bind('click',function () { //when load more button is clicked, add 10 more gifs to the page
+                    
                     if(end < results.length) { // if there are no more gifs to be displayed, remove button
+                        start += 10
+                        end += 10
                         displayGif()
                     }
                     else {
                         $('.load-more').remove()
                     }
-                })}
+                })
             })
         })
 
