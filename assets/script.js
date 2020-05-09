@@ -82,6 +82,7 @@ $(document).ready(function() {
 
                     display.append(rating)
                     display.append(image)
+                    
                     $('.display-area').append(display) //appending the created div to the page
                 }
                 $('.display_image').click(function() { //toggle functionailty for first 10 gifs added

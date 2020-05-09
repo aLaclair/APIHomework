@@ -84,7 +84,7 @@ button {
 }
 .display {
     float: left;
-    text-align: center;
+    justify-content: center;
     width: fit-content;
     margin: 1%;
     padding: 1%;
@@ -94,6 +94,9 @@ button {
     border-radius: 3px;
 }
 .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     box-sizing: border-box;
     float: right;
     width: 29%;
@@ -131,6 +134,7 @@ footer {
     width: 75%;
     border-radius: 5px;
     font-size: 18px;
+    align-self: center;
 }
 .movie-display, .weather-display {
     color: #5e6870;
@@ -152,19 +156,22 @@ h3 {
 }
 @media screen and (max-width: 980px) {
     .right {
+        position: relative;
+        flex-direction: row;
         float: none;
         width: 100vw;
         height: fit-content;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 10px 10px;
     }
     .search-area {
         display: flex;
+        flex-direction: column;
+        align-items: center;
         margin: 0px;
         height: 8vh;
         padding-top: 10px;
         padding-bottom: 10px;
-        width: 45vw;
+        width: 33%;
     }
     .display-area {
         width: 100vw;
@@ -175,5 +182,6 @@ h3 {
         height: 25px;
         font-size: 14px;
         margin-top: 10px;
+
     }
 }
